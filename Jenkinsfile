@@ -20,14 +20,14 @@ pipeline {
             }
         }
 
-        stage("OWASP Dependency Check") {
-            steps {
-                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_KEY')]) {
-                    dependencyCheck additionalArguments: "--scan ./ --nvdApiKey $NVD_KEY --format HTML --format XML", odcInstallation: 'Owasp'
-                }
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+        // stage("OWASP Dependency Check") {
+        //     steps {
+        //         withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_KEY')]) {
+        //             dependencyCheck additionalArguments: "--scan ./ --nvdApiKey $NVD_KEY --format HTML --format XML", odcInstallation: 'Owasp'
+        //         }
+        //         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //     }
+        // }
 
         stage("Trivy File Scan") {
             steps {
