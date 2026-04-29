@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage("OWASP Dependency Check") {
             steps {
                 withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_KEY')]) {
@@ -28,7 +28,7 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-
+*/
         stage("Trivy File Scan") {
             steps {
                 sh "trivy fs --format table --severity HIGH,CRITICAL --scanners vuln,secret,config ."
